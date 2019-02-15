@@ -1,47 +1,78 @@
-// Nash_Factorial.cpp : This file contains the 'main' function. Program execution begins and ends there.
-//
+/***************
+Chapa
+2/15/2019
+Factorial 
+****************/
 
 #include "pch.h"
 #include <iostream>
+
 using namespace std;
 
-//global variables
-int n = 0; //user-generated number
-int f = 0; //factorial
-
-int factorial();
-int validator();
+long long factorial(long long f);
+long long validator(long long n);
 
 int main()
 {
-	cout << "Choose a number from 1 to 20 and we'll find it's factorial: " << endl;
-	cin >> n;
+	bool t = true;
+	int n = 0;
 
-	int validator();
+	cout << "Choose a number from 1 to 20 and we'll find it's factorial: " << endl;
+
+	while (t == true)
+	{	
+		cin >> n;
+
+		bool v = validator(n);
+
+		switch (v)
+		{
+			case false:
+				cout << "Your entry is not a number from 1 to 20. Please try again." << endl;
+				break;
+			case true:
+				if (n == 0)
+				{
+					t = false; //Get out of loop
+				}
+				else
+				{
+					cout << "The factorial of " << n << " is: " << factorial(n) << endl;
+					t = true;
+				}
+				break;
+		}
+	}
+
+	return 0;
 }
 
-int factorial()
+long long factorial(long long u)
 {
-	for (int i = 1; i < n; i++)
+
+	long long f = 1;
+
+	for (long long i = 1; i <= u; i++)
 	{
-		f = f * i;
+		f *= i;
 	}
 
 	return f;
 }
 
-int validator()
+long long validator(long long n)
 {
-	if (n > 0 && n <= 20) {
-		f = n;
-
-		factorial();
-		
-		cout << "The factorial of " << n << " is: " << f << endl;
+	bool t = false;
+	
+	if (n > 0 && n <= 20) 
+	{
+		t = true;
 	}
 	else
 	{
-		cout << "Your entry is not a number from 1 to 20. Please try again." << endl;
+		t = false;
 	}
-	return 0;
+
+	return t;
 }
+
